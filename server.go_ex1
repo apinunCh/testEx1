@@ -1,0 +1,33 @@
+package main
+
+import(
+	"net/http"
+	"github.com/gin-gonic/gin"
+)
+
+func helloHandler(c *gin.Context){
+	c.JSON(http.StatusOK, gin.H{
+		"message" : "hello",
+	})
+}
+
+func artHandler(c *gin.Context){
+	c.JSON(http.StatusOK, gin.H{
+		"name" : "Apinun",
+	})
+}
+
+func createArtHandler(c *gin.Context){
+	c.JSON(http.StatusOK, gin.H{
+		"name" : "Apinun_POST",
+	})
+}
+
+func main(){
+	r :=gin.Default()
+	r.GET("/hello", helloHandler)
+	r.GET("/art", artHandler)
+	r.POST("/art", createArtHandler)
+	r.Run(":1234") // listen and serve on 123.0.0.0:8080
+}
+
